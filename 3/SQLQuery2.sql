@@ -1,37 +1,37 @@
-use C_MyBASE;
+п»їuse C_MyBASE;
 
-CREATE TABLE ПОКУПАТЕЛЬ(
-Покупатель nvarchar(50) NOT NULL,
-Телефон nvarchar(50) NULL,
-Адрес nvarchar(50) NULL,
-CONSTRAINT PK_ПОКУПАТЕЛЬ PRIMARY KEY(Покупатель)
+CREATE TABLE РџРћРљРЈРџРђРўР•Р›Р¬(
+РџРѕРєСѓРїР°С‚РµР»СЊ nvarchar(50) NOT NULL,
+РўРµР»РµС„РѕРЅ nvarchar(50) NULL,
+РђРґСЂРµСЃ nvarchar(50) NULL,
+CONSTRAINT PK_РџРћРљРЈРџРђРўР•Р›Р¬ PRIMARY KEY(РџРѕРєСѓРїР°С‚РµР»СЊ)
 );
 
-CREATE TABLE СКЛАД(
-Место_хранения nvarchar(50) NOT NULL,
-Количество_ячеек_склада int NULL,
-CONSTRAINT PK_СКЛАД PRIMARY KEY(Место_хранения)
+CREATE TABLE РЎРљР›РђР”(
+РњРµСЃС‚Рѕ_С…СЂР°РЅРµРЅРёСЏ nvarchar(50) NOT NULL,
+РљРѕР»РёС‡РµСЃС‚РІРѕ_СЏС‡РµРµРє_СЃРєР»Р°РґР° int NULL,
+CONSTRAINT PK_РЎРљР›РђР” PRIMARY KEY(РњРµСЃС‚Рѕ_С…СЂР°РЅРµРЅРёСЏ)
 );
 
-CREATE TABLE ТОВАРЫ(
-Наименование nvarchar(50) NOT NULL,
-Цена real NULL,
-Описание nvarchar(50) NULL,
-Количество int NULL,
-CONSTRAINT PK_ТОВАРЫ PRIMARY KEY(Наименование)
+CREATE TABLE РўРћР’РђР Р«(
+РќР°РёРјРµРЅРѕРІР°РЅРёРµ nvarchar(50) NOT NULL,
+Р¦РµРЅР° real NULL,
+РћРїРёСЃР°РЅРёРµ nvarchar(50) NULL,
+РљРѕР»РёС‡РµСЃС‚РІРѕ int NULL,
+CONSTRAINT PK_РўРћР’РђР Р« PRIMARY KEY(РќР°РёРјРµРЅРѕРІР°РЅРёРµ)
 );
 
-CREATE TABLE СДЕЛКИ(
-Номер_сделки int NOT NULL,
-Покупатель nvarchar(50) NULL foreign key references 
-									ПОКУПАТЕЛЬ(Покупатель),
-Дата_сделки date NULL,
-Товар nvarchar(50) NULL foreign key references 
-									ТОВАРЫ(Наименование),
-Место_хранения nvarchar(50) NULL foreign key references 
-									СКЛАД(Место_хранения),
-Количество_ячеек int NULL,
-CONSTRAINT PK_СДЕЛКИ PRIMARY KEY(Номер_сделки)
+CREATE TABLE РЎР”Р•Р›РљР(
+РќРѕРјРµСЂ_СЃРґРµР»РєРё int NOT NULL,
+РџРѕРєСѓРїР°С‚РµР»СЊ nvarchar(50) NULL foreign key references 
+									РџРћРљРЈРџРђРўР•Р›Р¬(РџРѕРєСѓРїР°С‚РµР»СЊ),
+Р”Р°С‚Р°_СЃРґРµР»РєРё date NULL,
+РўРѕРІР°СЂ nvarchar(50) NULL foreign key references 
+									РўРћР’РђР Р«(РќР°РёРјРµРЅРѕРІР°РЅРёРµ),
+РњРµСЃС‚Рѕ_С…СЂР°РЅРµРЅРёСЏ nvarchar(50) NULL foreign key references 
+									РЎРљР›РђР”(РњРµСЃС‚Рѕ_С…СЂР°РЅРµРЅРёСЏ),
+РљРѕР»РёС‡РµСЃС‚РІРѕ_СЏС‡РµРµРє int NULL,
+CONSTRAINT PK_РЎР”Р•Р›РљР PRIMARY KEY(РќРѕРјРµСЂ_СЃРґРµР»РєРё)
 );
 
 

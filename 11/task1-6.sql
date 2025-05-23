@@ -1,12 +1,12 @@
-use UNIVER;
+п»їuse UNIVER;
 
 --1
 declare @tv char(20), @t char(300)='';
-declare SubjectCursor CURSOR for Select  SUBJECT from SUBJECT where SUBJECT.PULPIT = 'ИСиТ';
+declare SubjectCursor CURSOR for Select  SUBJECT from SUBJECT where SUBJECT.PULPIT = 'РРЎРёРў';
 
 OPEN SubjectCursor;
 Fetch SubjectCursor into @tv;
-print  'Дисциплины';
+print  'Р”РёСЃС†РёРїР»РёРЅС‹';
 while @@FETCH_STATUS = 0
 begin
 	set @t = RTRIM(@tv) + ',' + @t;
@@ -24,11 +24,11 @@ go
 
 --local
 declare @tv char(20);
-declare SubjectCursor CURSOR LOCAL for Select  SUBJECT from SUBJECT where SUBJECT.PULPIT = 'ИСиТ';
+declare SubjectCursor CURSOR LOCAL for Select  SUBJECT from SUBJECT where SUBJECT.PULPIT = 'РРЎРёРў';
 
 OPEN SubjectCursor;
 Fetch SubjectCursor into @tv;
-print  'Дисциплины';
+print  'Р”РёСЃС†РёРїР»РёРЅС‹';
 print '1. ' + @tv;
 
 go
@@ -43,11 +43,11 @@ go
 
 --global
 declare @tv char(20);
-declare SubjectCursor CURSOR GLOBAL for Select  SUBJECT from SUBJECT where SUBJECT.PULPIT = 'ИСиТ';
+declare SubjectCursor CURSOR GLOBAL for Select  SUBJECT from SUBJECT where SUBJECT.PULPIT = 'РРЎРёРў';
 
 OPEN SubjectCursor;
 Fetch SubjectCursor into @tv;
-print  'Дисциплины';
+print  'Р”РёСЃС†РёРїР»РёРЅС‹';
 print '1. ' + @tv;
 
 go
@@ -65,16 +65,16 @@ go
 --3
 
 
-declare thirdCursor cursor local static for SELECT SUBJECT, PDATE, NOTE FROM PROGRESS where SUBJECT = 'КГ';
+declare thirdCursor cursor local static for SELECT SUBJECT, PDATE, NOTE FROM PROGRESS where SUBJECT = 'РљР“';
 declare @tid char(10), @tnm char(40), @tgn char(1);
 
 open thirdCursor
-print   'Количество строк : ' + cast(@@CURSOR_ROWS as varchar(5)); 
+print   'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє : ' + cast(@@CURSOR_ROWS as varchar(5)); 
 
 UPDATE PROGRESS set NOTE = 10 where IDSTUDENT = '1002';
 delete PROGRESS where IDSTUDENT = '1019';
 insert PROGRESS (SUBJECT, IDSTUDENT, PDATE, NOTE) 
-                 values ('КГ', 1019, '2020-01-10', 2); 
+                 values ('РљР“', 1019, '2020-01-10', 2); 
 FETCH thirdCursor into @tid, @tnm, @tgn;     
 while @@fetch_status = 0                                    
      begin 
@@ -89,15 +89,15 @@ select * from PROGRESS
 
 
 go
-declare thirdCursor cursor local dynamic for SELECT SUBJECT, PDATE, NOTE FROM PROGRESS where SUBJECT = 'КГ';
+declare thirdCursor cursor local dynamic for SELECT SUBJECT, PDATE, NOTE FROM PROGRESS where SUBJECT = 'РљР“';
 declare @tid char(10), @tnm char(40), @tgn char(1);
 
 open thirdCursor
-print   'Количество строк : ' + cast(@@CURSOR_ROWS as varchar(5)); 
+print   'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє : ' + cast(@@CURSOR_ROWS as varchar(5)); 
 UPDATE PROGRESS set NOTE = 10 where IDSTUDENT = '1002';
 delete PROGRESS where IDSTUDENT = '1019';
 insert PROGRESS (SUBJECT, IDSTUDENT, PDATE, NOTE) 
-                 values ('КГ', 1019, '2020-01-10', 2); 
+                 values ('РљР“', 1019, '2020-01-10', 2); 
 FETCH thirdCursor into @tid, @tnm, @tgn;     
 while @@fetch_status = 0                                    
      begin 
@@ -116,32 +116,32 @@ go
 
 declare @tc int, @rn char(20);
 declare SubjectCursor CURSOR local dynamic SCROLL
-	for Select  ROW_NUMBER() over (order by SUBJECT) N, SUBJECT from SUBJECT where SUBJECT.PULPIT = 'ИСиТ';
+	for Select  ROW_NUMBER() over (order by SUBJECT) N, SUBJECT from SUBJECT where SUBJECT.PULPIT = 'РРЎРёРў';
 
 OPEN SubjectCursor;
 Fetch SubjectCursor into @tc, @rn;
-print  'первая строка    :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  'РїРµСЂРІР°СЏ СЃС‚СЂРѕРєР°    :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch  Last from SubjectCursor into @tc, @rn;
-print  'последняя строка    :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  'РїРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂРѕРєР°    :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch Absolute -4 from SubjectCursor into @tc, @rn;
-print  '4 с конца строка    :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  '4 СЃ РєРѕРЅС†Р° СЃС‚СЂРѕРєР°    :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch Relative -2 from SubjectCursor into @tc, @rn;
-print  'вторая назад от текущей строка     :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  'РІС‚РѕСЂР°СЏ РЅР°Р·Р°Рґ РѕС‚ С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєР°     :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch Prior from SubjectCursor into @tc, @rn;
-print  'предыдущая строка от текущей    :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  'РїСЂРµРґС‹РґСѓС‰Р°СЏ СЃС‚СЂРѕРєР° РѕС‚ С‚РµРєСѓС‰РµР№    :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch next from SubjectCursor into @tc, @rn;
-print  'следующая строка от текущей    :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  'СЃР»РµРґСѓСЋС‰Р°СЏ СЃС‚СЂРѕРєР° РѕС‚ С‚РµРєСѓС‰РµР№    :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch Absolute 2 from SubjectCursor into @tc, @rn;
-print  '6 с начала строка    :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  '6 СЃ РЅР°С‡Р°Р»Р° СЃС‚СЂРѕРєР°    :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 Fetch Relative 2 from SubjectCursor into @tc, @rn;
-print  'вторая вперёд от текущей строка     :' + cast(@tc as varchar(3)) + rtrim(@rn);
+print  'РІС‚РѕСЂР°СЏ РІРїРµСЂС‘Рґ РѕС‚ С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєР°     :' + cast(@tc as varchar(3)) + rtrim(@rn);
 
 
 close SubjectCursor;
@@ -203,7 +203,7 @@ from PROGRESS inner join STUDENT
 on PROGRESS.IDSTUDENT = STUDENT.IDSTUDENT
 where NOTE <=4 for UPDATE;
 
-INSERT INTO PROGRESS (SUBJECT, IDSTUDENT, PDATE, NOTE) values ('ОАиП', 1005,  '01.10.2013', 4);
+INSERT INTO PROGRESS (SUBJECT, IDSTUDENT, PDATE, NOTE) values ('РћРђРёРџ', 1005,  '01.10.2013', 4);
 
 open sixthCursor
 fetch sixthCursor into @ts, @tid, @td, @tn

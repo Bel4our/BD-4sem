@@ -1,4 +1,4 @@
---task1
+п»ї--task1
 set nocount on
 if exists(select* from SYS.OBJECTS where OBJECT_ID=object_id(N'DBO.firstTable'))
 	drop table firstTable;
@@ -9,16 +9,16 @@ Create table firstTable
 		(x int, field nvarchar(20));
 		INSERT firstTable VALUES (1, 'first'),(2,'second'),(3,'third');
 		set @c=(select count(*) from firstTable);
-		print 'количество строк в таблице: ' +cast(@c as varchar(2));
+		print 'РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ С‚Р°Р±Р»РёС†Рµ: ' +cast(@c as varchar(2));
 		if @flag='c' commit;
 		else rollback;
 SET IMPLICIT_TRANSACTIONS OFF;
 
 
 if exists(select* from SYS.OBJECTS where OBJECT_ID=object_id(N'DBO.firstTable'))
-	print 'таблица есть';
+	print 'С‚Р°Р±Р»РёС†Р° РµСЃС‚СЊ';
 else
-	print 'таблицы нет('
+	print 'С‚Р°Р±Р»РёС†С‹ РЅРµС‚('
 
 
 
@@ -28,15 +28,15 @@ use UNIVER;
 
 begin try
 	begin tran
-	insert PULPIT values ('ПИ', 'Программная инженерия', 'ИТ')
-	insert PULPIT values ('ПИ', 'Программная инженерия', 'ИТ')
+	insert PULPIT values ('РџР', 'РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ', 'РРў')
+	insert PULPIT values ('РџР', 'РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ', 'РРў')
 	commit tran;
 end try
 begin catch
-	print 'ошибка: ' + case
+	print 'РѕС€РёР±РєР°: ' + case
 	when error_number() = 2627 and patindex('%PK__PULPIT__55166E7F2A6D9344%', error_message()) > 0
-	then 'дублирование специальностей'
-	else 'неизвестная ошибка: ' + cast(error_number() as varchar(5)) + ' ' + error_message()
+	then 'РґСѓР±Р»РёСЂРѕРІР°РЅРёРµ СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚РµР№'
+	else 'РЅРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР°: ' + cast(error_number() as varchar(5)) + ' ' + error_message()
 	end;
 	if @@trancount > 0 rollback tran;
 end catch;
@@ -49,24 +49,24 @@ end catch;
 declare @point varchar(32);
 begin try
 begin tran
-	insert PULPIT values ('ПИ', 'Программная инженерия', 'ИТ')
+	insert PULPIT values ('РџР', 'РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ', 'РРў')
 	set @point = 'p1'; save tran @point;
-	insert PULPIT values ('ПИ', 'Программная инженерия', 'ИТ')
+	insert PULPIT values ('РџР', 'РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ', 'РРў')
 	set @point = 'p2'; save tran @point;
 commit tran;
 end try
 begin catch
-print 'ошибка: ' + case
+print 'РѕС€РёР±РєР°: ' + case
 	when error_number() = 2627 and patindex('%PK__PULPIT__55166E7F2A6D9344%', error_message()) > 0
-	then 'дублирование специальностей'
-	else 'неизвестная ошибка: ' + cast(error_number() as varchar(5)) + ' ' + error_message()
+	then 'РґСѓР±Р»РёСЂРѕРІР°РЅРёРµ СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚РµР№'
+	else 'РЅРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР°: ' + cast(error_number() as varchar(5)) + ' ' + error_message()
 	end;
 if @@trancount > 0
 	begin 
-	print 'контрольная точка: '+ @point;
+	print 'РєРѕРЅС‚СЂРѕР»СЊРЅР°СЏ С‚РѕС‡РєР°: '+ @point;
 	rollback tran @point;
 	commit tran;
-	delete PULPIT where PULPIT.PULPIT = 'ПИ'
+	delete PULPIT where PULPIT.PULPIT = 'РџР'
 	end;
 end catch;
 
@@ -79,18 +79,18 @@ end catch;
 set transaction isolation level READ COMMITTED
 begin transaction
 --t1
-select @@SPID, 'insert PULPIT' 'вывод', * from PULPIT
-											where PULPIT.PULPIT='ПИ';
-select @@SPID, 'update SUBJECT' 'вывод', SUBJECT.SUBJECT, SUBJECT_NAME 
-									from SUBJECT where SUBJECT.PULPIT='ПИ';
+select @@SPID, 'insert PULPIT' 'РІС‹РІРѕРґ', * from PULPIT
+											where PULPIT.PULPIT='РџР';
+select @@SPID, 'update SUBJECT' 'РІС‹РІРѕРґ', SUBJECT.SUBJECT, SUBJECT_NAME 
+									from SUBJECT where SUBJECT.PULPIT='РџР';
 commit;
 --t2
 
 
 begin transaction
 select @@SPID 
-insert PULPIT values ('ПИ', 'Программная инженерия', 'ИТ');
-update SUBJECT set SUBJECT.PULPIT = 'ПИ' where SUBJECT.SUBJECT='БД'
+insert PULPIT values ('РџР', 'РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ', 'РРў');
+update SUBJECT set SUBJECT.PULPIT = 'РџР' where SUBJECT.SUBJECT='Р‘Р”'
 
 --t1
 --t2
@@ -106,26 +106,26 @@ rollback;
 
 set transaction isolation level READ COMMITTED
 begin transaction
-select count(*) from SUBJECT where PULPIT = 'ИСиТ';
+select count(*) from SUBJECT where PULPIT = 'РРЎРёРў';
 --t1
 --t2
-select 'update SUBJECT' 'вывод', count(*)
-from SUBJECT where PULPIT='ИСиТ';
+select 'update SUBJECT' 'РІС‹РІРѕРґ', count(*)
+from SUBJECT where PULPIT='РРЎРёРў';
 commit;
 
 
 begin transaction
 --t1
-update SUBJECT set PULPIT = 'ИСиТ'
-					where PULPIT = 'ЛУ'
+update SUBJECT set PULPIT = 'РРЎРёРў'
+					where PULPIT = 'Р›РЈ'
 
 commit;
 
 --t2
 
 
-update SUBJECT set PULPIT = 'ЛУ'
-					where SUBJECT.SUBJECT = 'ИГ'
+update SUBJECT set PULPIT = 'Р›РЈ'
+					where SUBJECT.SUBJECT = 'РР“'
 
 
 
@@ -133,34 +133,34 @@ update SUBJECT set PULPIT = 'ЛУ'
 
 set transaction isolation level  REPEATABLE READ	
 	begin transaction 
-	select SUBJECT_NAME from SUBJECT where PULPIT = 'ОХ';
+	select SUBJECT_NAME from SUBJECT where PULPIT = 'РћРҐ';
 	--t1
 	--t2
 
 	select  case
-    when SUBJECT = 'ТПВИ' then 'insert  SUBJECT'  else ' ' 
-	end 'результат', SUBJECT_NAME from SUBJECT  where PULPIT = 'ОХ';
+    when SUBJECT = 'РўРџР’Р' then 'insert  SUBJECT'  else ' ' 
+	end 'СЂРµР·СѓР»СЊС‚Р°С‚', SUBJECT_NAME from SUBJECT  where PULPIT = 'РћРҐ';
 	commit; 
 
 	begin transaction 
 	--t1
-    INSERT into SUBJECT values('ТПВИ','Технологии программирования в интернет','ОХ');   
+    INSERT into SUBJECT values('РўРџР’Р','РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ РІ РёРЅС‚РµСЂРЅРµС‚','РћРҐ');   
     commit;
 	
 	--t2
-delete SUBJECT where SUBJECT = 'ТПВИ';
+delete SUBJECT where SUBJECT = 'РўРџР’Р';
 
 
 --task7
 
 set transaction isolation level SERIALIZABLE	
 begin transaction 
-	delete SUBJECT where SUBJECT = 'ТПВИ';
-	INSERT into SUBJECT values('ТПВИ', 'Технологии программирования в интернет', 'ИСиТ');
-       update SUBJECT set SUBJECT_NAME = 'Технологии программирования' where  SUBJECT = 'ТПВИ';
-    select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'ИСиТ';
+	delete SUBJECT where SUBJECT = 'РўРџР’Р';
+	INSERT into SUBJECT values('РўРџР’Р', 'РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ РІ РёРЅС‚РµСЂРЅРµС‚', 'РРЎРёРў');
+       update SUBJECT set SUBJECT_NAME = 'РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ' where  SUBJECT = 'РўРџР’Р';
+    select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'РРЎРёРў';
 	--t1
-select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'ИСиТ';
+select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'РРЎРёРў';
 
 --t2
 commit; 	
@@ -168,16 +168,16 @@ commit;
 
 
 begin transaction 	  
-	delete SUBJECT where SUBJECT = 'ТПВИ';
-	INSERT into SUBJECT values('ТПВИ', 'Технологии программирования в интернет','ИСиТ');
-       update SUBJECT set SUBJECT_NAME = 'Технологии программирования' where  SUBJECT = 'ТПВИ';
-    select SUBJECT_NAME from SUBJECT where PULPIT = 'ИСиТ';
+	delete SUBJECT where SUBJECT = 'РўРџР’Р';
+	INSERT into SUBJECT values('РўРџР’Р', 'РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ РІ РёРЅС‚РµСЂРЅРµС‚','РРЎРёРў');
+       update SUBJECT set SUBJECT_NAME = 'РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ' where  SUBJECT = 'РўРџР’Р';
+    select SUBJECT_NAME from SUBJECT where PULPIT = 'РРЎРёРў';
 	--t1
     commit; 
-    select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'ИСиТ';
+    select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'РРЎРёРў';
 	--t2
  		
-delete SUBJECT where SUBJECT = 'ТПВИ';
+delete SUBJECT where SUBJECT = 'РўРџР’Р';
 
 
 
@@ -187,9 +187,9 @@ delete SUBJECT where SUBJECT = 'ТПВИ';
 select * from SUBJECT
 
 begin tran
-insert SUBJECT values('NEETIM', 'тут типо описание', 'ЭТиМ');
+insert SUBJECT values('NEETIM', 'С‚СѓС‚ С‚РёРїРѕ РѕРїРёСЃР°РЅРёРµ', 'Р­РўРёРњ');
 	begin tran 
-	update SUBJECT set SUBJECT.SUBJECT = 'ILIETIM' where SUBJECT.PULPIT = 'ЭТиМ'
+	update SUBJECT set SUBJECT.SUBJECT = 'ILIETIM' where SUBJECT.PULPIT = 'Р­РўРёРњ'
 	commit;
 	select * from SUBJECT
 

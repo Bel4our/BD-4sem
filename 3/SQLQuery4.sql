@@ -1,6 +1,6 @@
-use Ce_MyBASE;
+п»їuse Ce_MyBASE;
 
-ALTER Table ТОВАРЫ DROP CONSTRAINT c_Дата_поступления;
+ALTER Table РўРћР’РђР Р« DROP CONSTRAINT c_Р”Р°С‚Р°_РїРѕСЃС‚СѓРїР»РµРЅРёСЏ;
 Go
-ALTER Table ТОВАРЫ DROP COLUMN Дата_поступления;
+ALTER Table РўРћР’РђР Р« DROP COLUMN Р”Р°С‚Р°_РїРѕСЃС‚СѓРїР»РµРЅРёСЏ;
 Go

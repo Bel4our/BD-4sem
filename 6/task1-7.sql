@@ -1,11 +1,11 @@
-use UNIVER;
+п»їuse UNIVER;
 
 SELECT AUDITORIUM.AUDITORIUM_TYPE,
-	max(AUDITORIUM.AUDITORIUM_CAPACITY)[Максимальная],
-	min(AUDITORIUM.AUDITORIUM_CAPACITY)[Минимальная],
-	avg(AUDITORIUM.AUDITORIUM_CAPACITY)[Средняя],
-	sum(AUDITORIUM.AUDITORIUM_CAPACITY)[Суммарная],
-	count(AUDITORIUM_CAPACITY) [Количество]
+	max(AUDITORIUM.AUDITORIUM_CAPACITY)[РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ],
+	min(AUDITORIUM.AUDITORIUM_CAPACITY)[РњРёРЅРёРјР°Р»СЊРЅР°СЏ],
+	avg(AUDITORIUM.AUDITORIUM_CAPACITY)[РЎСЂРµРґРЅСЏСЏ],
+	sum(AUDITORIUM.AUDITORIUM_CAPACITY)[РЎСѓРјРјР°СЂРЅР°СЏ],
+	count(AUDITORIUM_CAPACITY) [РљРѕР»РёС‡РµСЃС‚РІРѕ]
 FROM AUDITORIUM inner join AUDITORIUM_TYPE
 on AUDITORIUM.AUDITORIUM_TYPE = AUDITORIUM_TYPE.AUDITORIUM_TYPE
 group by AUDITORIUM.AUDITORIUM_TYPE
@@ -16,14 +16,14 @@ FROM (select CASE
 	when PROGRESS.NOTE between 4 and 6 then '4-6'
 	when PROGRESS.NOTE between 7and 9 then '7-9'
 	else '10'
-	end [Пределы оценок], count(*) [Количество]
+	end [РџСЂРµРґРµР»С‹ РѕС†РµРЅРѕРє], count(*) [РљРѕР»РёС‡РµСЃС‚РІРѕ]
 FROM PROGRESS
 group by case
 when PROGRESS.NOTE between 4 and 6 then '4-6'
 	when PROGRESS.NOTE between 7and 9 then '7-9'
 	else '10'
 	end) as T
-	order by case [Пределы оценок]
+	order by case [РџСЂРµРґРµР»С‹ РѕС†РµРЅРѕРє]
 	when '4-6' then 3
 	when '7-9' then 2
 	when '10' then 1
@@ -34,38 +34,38 @@ when PROGRESS.NOTE between 4 and 6 then '4-6'
 Select f.FACULTY,
 	   g.PROFESSION,
 	   g.IDGROUP,
-	   round(avg(cast(NOTE as float(1))),2) as [Средняя оценка]
+	   round(avg(cast(NOTE as float(1))),2) as [РЎСЂРµРґРЅСЏСЏ РѕС†РµРЅРєР°]
 from FACULTY f
 	inner join GROUPS g on f.FACULTY = g.FACULTY
 	inner join STUDENT s on g.IDGROUP = s.IDGROUP
 	inner join PROGRESS p on s.IDSTUDENT = p.IDSTUDENT
 group by f.FACULTY, g.PROFESSION, g.IDGROUP
-order by [Средняя оценка] desc
+order by [РЎСЂРµРґРЅСЏСЏ РѕС†РµРЅРєР°] desc
 
 
 Select f.FACULTY,
 	   g.PROFESSION,
 	   g.IDGROUP,
-	   round(avg(cast(NOTE as float(1))),2) as [Средняя оценка]
+	   round(avg(cast(NOTE as float(1))),2) as [РЎСЂРµРґРЅСЏСЏ РѕС†РµРЅРєР°]
 from FACULTY f
 	inner join GROUPS g on f.FACULTY = g.FACULTY
 	inner join STUDENT s on g.IDGROUP = s.IDGROUP
 	inner join PROGRESS p on s.IDSTUDENT = p.IDSTUDENT
-where p.SUBJECT like 'БД' or p.SUBJECT like 'ОАиП'
+where p.SUBJECT like 'Р‘Р”' or p.SUBJECT like 'РћРђРёРџ'
 group by f.FACULTY, g.PROFESSION, g.IDGROUP
-order by [Средняя оценка] desc
+order by [РЎСЂРµРґРЅСЏСЏ РѕС†РµРЅРєР°] desc
 
 
 SELECT FACULTY.FACULTY, GROUPS.PROFESSION, PROGRESS.SUBJECT,
-		round(avg(cast(PROGRESS.NOTE as float(1))),2) as [Средняя оценка]
+		round(avg(cast(PROGRESS.NOTE as float(1))),2) as [РЎСЂРµРґРЅСЏСЏ РѕС†РµРЅРєР°]
 FROM FACULTY inner join GROUPS on FACULTY.FACULTY= GROUPS.FACULTY
 			 inner join STUDENT on GROUPS.IDGROUP = STUDENT.IDGROUP
 			 inner join PROGRESS on PROGRESS.IDSTUDENT = STUDENT.IDSTUDENT
-WHERE FACULTY.FACULTY like 'ХТиТ'
+WHERE FACULTY.FACULTY like 'РҐРўРёРў'
 GROUP BY FACULTY.FACULTY, GROUPS.PROFESSION, PROGRESS.SUBJECT;
 
 
-SELECT PROGRESS.SUBJECT, count(*) [Количество студентов]
+SELECT PROGRESS.SUBJECT, count(*) [РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СѓРґРµРЅС‚РѕРІ]
 from PROGRESS
 GROUP BY PROGRESS.SUBJECT, PROGRESS.NOTE
 	having PROGRESS.NOTE = '8' or PROGRESS.NOTE = '9';

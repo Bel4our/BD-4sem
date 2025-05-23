@@ -1,3 +1,3 @@
-SELECT PULPIT.PULPIT_NAME [Кафедра], isnull(TEACHER.TEACHER_NAME, '***')[Преподаватель]
+п»їSELECT PULPIT.PULPIT_NAME [РљР°С„РµРґСЂР°], isnull(TEACHER.TEACHER_NAME, '***')[РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ]
 FROM PULPIT LEFT OUTER JOIN TEACHER
 ON PULPIT.PULPIT = TEACHER.PULPIT;

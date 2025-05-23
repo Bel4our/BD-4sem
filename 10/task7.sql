@@ -1,75 +1,75 @@
-use С_MyBase;
+п»їuse РЎ_MyBase;
 
-exec sp_helpindex 'ПОКУПАТЕЛЬ'
-exec sp_helpindex 'СДЕЛКИ'
-exec sp_helpindex 'СКЛАД'
-exec sp_helpindex 'ТОВАРЫ'
-
-
-
-
-SELECT * FROM СДЕЛКИ WHERE Номер_сделки > 2 and Товар = 'палпи' 
-
-create index #second on СДЕЛКИ(Номер_сделки, Товар);
-
-SELECT * FROM СДЕЛКИ WHERE Номер_сделки > 2 and Товар = 'палпи'
-
-drop index #second on СДЕЛКИ
-
-
-
-SELECT Товар FROM СДЕЛКИ WHERE Номер_сделки > 2 
-
-create index #third on СДЕЛКИ(Номер_сделки) include (Товар);
-
-SELECT Товар FROM СДЕЛКИ WHERE Номер_сделки > 2 
-
-drop index #third on СДЕЛКИ
-
-
-
-SELECT * FROM СДЕЛКИ where Номер_сделки between 1 and 9 order by Номер_сделки;
-SELECT * FROM СДЕЛКИ where Номер_сделки > 2 and Номер_сделки < 8
-SELECT * FROM СДЕЛКИ where Товар = 'палпи'
-
-CREATE index #fourth on СДЕЛКИ(Номер_сделки) where (Номер_сделки > 1 and Номер_сделки < 9)
-
-SELECT * FROM СДЕЛКИ where Номер_сделки between 1 and 9 order by Номер_сделки;
-SELECT * FROM СДЕЛКИ where Номер_сделки > 2 and Номер_сделки < 8
-SELECT * FROM СДЕЛКИ where Товар = 'палпи'
-
-drop index #fourth on СДЕЛКИ
+exec sp_helpindex 'РџРћРљРЈРџРђРўР•Р›Р¬'
+exec sp_helpindex 'РЎР”Р•Р›РљР'
+exec sp_helpindex 'РЎРљР›РђР”'
+exec sp_helpindex 'РўРћР’РђР Р«'
 
 
 
 
-create index #ex5_index on СДЕЛКИ(Номер_сделки);
+SELECT * FROM РЎР”Р•Р›РљР WHERE РќРѕРјРµСЂ_СЃРґРµР»РєРё > 2 and РўРѕРІР°СЂ = 'РїР°Р»РїРё' 
 
-SELECT NAME [Индекс], AVG_FRAGMENTATION_IN_PERCENT [Фрагментация (%)]
+create index #second on РЎР”Р•Р›РљР(РќРѕРјРµСЂ_СЃРґРµР»РєРё, РўРѕРІР°СЂ);
+
+SELECT * FROM РЎР”Р•Р›РљР WHERE РќРѕРјРµСЂ_СЃРґРµР»РєРё > 2 and РўРѕРІР°СЂ = 'РїР°Р»РїРё'
+
+drop index #second on РЎР”Р•Р›РљР
+
+
+
+SELECT РўРѕРІР°СЂ FROM РЎР”Р•Р›РљР WHERE РќРѕРјРµСЂ_СЃРґРµР»РєРё > 2 
+
+create index #third on РЎР”Р•Р›РљР(РќРѕРјРµСЂ_СЃРґРµР»РєРё) include (РўРѕРІР°СЂ);
+
+SELECT РўРѕРІР°СЂ FROM РЎР”Р•Р›РљР WHERE РќРѕРјРµСЂ_СЃРґРµР»РєРё > 2 
+
+drop index #third on РЎР”Р•Р›РљР
+
+
+
+SELECT * FROM РЎР”Р•Р›РљР where РќРѕРјРµСЂ_СЃРґРµР»РєРё between 1 and 9 order by РќРѕРјРµСЂ_СЃРґРµР»РєРё;
+SELECT * FROM РЎР”Р•Р›РљР where РќРѕРјРµСЂ_СЃРґРµР»РєРё > 2 and РќРѕРјРµСЂ_СЃРґРµР»РєРё < 8
+SELECT * FROM РЎР”Р•Р›РљР where РўРѕРІР°СЂ = 'РїР°Р»РїРё'
+
+CREATE index #fourth on РЎР”Р•Р›РљР(РќРѕРјРµСЂ_СЃРґРµР»РєРё) where (РќРѕРјРµСЂ_СЃРґРµР»РєРё > 1 and РќРѕРјРµСЂ_СЃРґРµР»РєРё < 9)
+
+SELECT * FROM РЎР”Р•Р›РљР where РќРѕРјРµСЂ_СЃРґРµР»РєРё between 1 and 9 order by РќРѕРјРµСЂ_СЃРґРµР»РєРё;
+SELECT * FROM РЎР”Р•Р›РљР where РќРѕРјРµСЂ_СЃРґРµР»РєРё > 2 and РќРѕРјРµСЂ_СЃРґРµР»РєРё < 8
+SELECT * FROM РЎР”Р•Р›РљР where РўРѕРІР°СЂ = 'РїР°Р»РїРё'
+
+drop index #fourth on РЎР”Р•Р›РљР
+
+
+
+
+create index #ex5_index on РЎР”Р•Р›РљР(РќРѕРјРµСЂ_СЃРґРµР»РєРё);
+
+SELECT NAME [РРЅРґРµРєСЃ], AVG_FRAGMENTATION_IN_PERCENT [Р¤СЂР°РіРјРµРЅС‚Р°С†РёСЏ (%)]
 FROM SYS.DM_DB_INDEX_PHYSICAL_STATS(DB_ID(),
-OBJECT_ID(N'СДЕЛКИ'), NULL, NULL, NULL) SS
+OBJECT_ID(N'РЎР”Р•Р›РљР'), NULL, NULL, NULL) SS
 JOIN SYS.INDEXES II ON SS.OBJECT_ID = II.OBJECT_ID
 AND SS.INDEX_ID = II.INDEX_ID WHERE NAME IS NOT NULL;
 
 
-alter index #ex5_index on СДЕЛКИ reorganize;
-alter index #ex5_index on СДЕЛКИ rebuild with (online = off);
+alter index #ex5_index on РЎР”Р•Р›РљР reorganize;
+alter index #ex5_index on РЎР”Р•Р›РљР rebuild with (online = off);
 
-drop index #ex5_index on СДЕЛКИ;
+drop index #ex5_index on РЎР”Р•Р›РљР;
 
-create index #ex6_index on СДЕЛКИ(Номер_сделки) with (fillfactor = 65);
+create index #ex6_index on РЎР”Р•Р›РљР(РќРѕРјРµСЂ_СЃРґРµР»РєРё) with (fillfactor = 65);
 
-select Номер_сделки, Товар from СДЕЛКИ;
+select РќРѕРјРµСЂ_СЃРґРµР»РєРё, РўРѕРІР°СЂ from РЎР”Р•Р›РљР;
 
-select name[Индекс], avg_fragmentation_in_percent [Фрагментация (%)]
+select name[РРЅРґРµРєСЃ], avg_fragmentation_in_percent [Р¤СЂР°РіРјРµРЅС‚Р°С†РёСЏ (%)]
 from sys.dm_db_index_physical_stats(DB_ID(),
-object_id(N'СДЕЛКИ'), NULL, NULL, NULL) ss
+object_id(N'РЎР”Р•Р›РљР'), NULL, NULL, NULL) ss
 join sys.hash_indexes ii
 on ss.object_id = ii.object_id
 and ss.index_id = ii.index_id
 where name is not null;
 
-drop index #ex6_index on СДЕЛКИ;
+drop index #ex6_index on РЎР”Р•Р›РљР;
 
 
 

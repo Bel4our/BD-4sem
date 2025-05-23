@@ -1,55 +1,55 @@
-use UNIVER
+п»їuse UNIVER
 
 go
 
-CREATE VIEW [Преподаватель]
+CREATE VIEW [РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ]
 as 
-select TEACHER [код],
-				  TEACHER_NAME [имя преподавателя],
-				  GENDER [пол],
-				  PULPIT [код кафедры]
+select TEACHER [РєРѕРґ],
+				  TEACHER_NAME [РёРјСЏ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ],
+				  GENDER [РїРѕР»],
+				  PULPIT [РєРѕРґ РєР°С„РµРґСЂС‹]
 				  from TEACHER;
 
 go
-Select * from [Преподаватель]
+Select * from [РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ]
 
 
 go 
-DROP VIEW[Преподаватель]
+DROP VIEW[РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ]
 
 
 
 
 go
-CREATE VIEW [Количество кафедр]
-as select f.FACULTY [факультет],
-		  Count(p.PULPIT) [количество кафедр]
+CREATE VIEW [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
+as select f.FACULTY [С„Р°РєСѓР»СЊС‚РµС‚],
+		  Count(p.PULPIT) [РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
 		  from FACULTY f inner join PULPIT p
 				on f.FACULTY = p.FACULTY
 				group by f.FACULTY;
 
 
 go 
-Select * from [Количество кафедр]
+Select * from [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
 
 go 
-DROP VIEW [Количество кафедр]
+DROP VIEW [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
 
 
 
 
 
 go
-CREATE VIEW [Аудитории]
-as select AUDITORIUM [код],
-		  AUDITORIUM_TYPE[тип]
+CREATE VIEW [РђСѓРґРёС‚РѕСЂРёРё]
+as select AUDITORIUM [РєРѕРґ],
+		  AUDITORIUM_TYPE[С‚РёРї]
 		  from AUDITORIUM
-		  where AUDITORIUM_TYPE like 'ЛК%';
+		  where AUDITORIUM_TYPE like 'Р›Рљ%';
 go 
-Select * from [Аудитории]
+Select * from [РђСѓРґРёС‚РѕСЂРёРё]
 
 go 
-DROP VIEW [Аудитории]
+DROP VIEW [РђСѓРґРёС‚РѕСЂРёРё]
 
 
 
@@ -58,16 +58,16 @@ DROP VIEW [Аудитории]
 
 
 go
-CREATE VIEW [Лекционные_аудитории]
-as select AUDITORIUM [код],
-		  AUDITORIUM_TYPE[тип]
+CREATE VIEW [Р›РµРєС†РёРѕРЅРЅС‹Рµ_Р°СѓРґРёС‚РѕСЂРёРё]
+as select AUDITORIUM [РєРѕРґ],
+		  AUDITORIUM_TYPE[С‚РёРї]
 		  from AUDITORIUM
-		  where AUDITORIUM_TYPE like 'ЛК%' with check option;
+		  where AUDITORIUM_TYPE like 'Р›Рљ%' with check option;
 go 
-Select * from [Лекционные_аудитории]
+Select * from [Р›РµРєС†РёРѕРЅРЅС‹Рµ_Р°СѓРґРёС‚РѕСЂРёРё]
 
 go 
-DROP VIEW [Лекционные_аудитории]
+DROP VIEW [Р›РµРєС†РёРѕРЅРЅС‹Рµ_Р°СѓРґРёС‚РѕСЂРёРё]
 
 
 
@@ -76,17 +76,17 @@ DROP VIEW [Лекционные_аудитории]
 
 
 go
-CREATE VIEW [Дисциплины]
-as select TOP 15 SUBJECT [код],
-		  SUBJECT_NAME [наименование],
-		  PULPIT [код кафедры]
+CREATE VIEW [Р”РёСЃС†РёРїР»РёРЅС‹]
+as select TOP 15 SUBJECT [РєРѕРґ],
+		  SUBJECT_NAME [РЅР°РёРјРµРЅРѕРІР°РЅРёРµ],
+		  PULPIT [РєРѕРґ РєР°С„РµРґСЂС‹]
 		  from SUBJECT
 		  ORDER BY SUBJECT_NAME;
 go 
-Select * from [Дисциплины]
+Select * from [Р”РёСЃС†РёРїР»РёРЅС‹]
 
 go 
-DROP VIEW [Дисциплины]
+DROP VIEW [Р”РёСЃС†РёРїР»РёРЅС‹]
 
 
 
@@ -96,9 +96,9 @@ DROP VIEW [Дисциплины]
 
 
 go
-CREATE VIEW [Количество кафедр]
-as select FACULTY_NAME [факультет],
-		  Count(PULPIT) [количество кафедр]
+CREATE VIEW [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
+as select FACULTY_NAME [С„Р°РєСѓР»СЊС‚РµС‚],
+		  Count(PULPIT) [РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
 		  from FACULTY  inner join PULPIT 
 				on FACULTY.FACULTY = PULPIT.FACULTY
 				group by FACULTY_NAME;
@@ -106,15 +106,15 @@ as select FACULTY_NAME [факультет],
 
 
 go 
-ALTER VIEW [Количество кафедр] with schemabinding
-as select f.FACULTY_NAME [факультет],
-		  Count(p.PULPIT) [количество кафедр]
+ALTER VIEW [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ] with schemabinding
+as select f.FACULTY_NAME [С„Р°РєСѓР»СЊС‚РµС‚],
+		  Count(p.PULPIT) [РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
 		  from dbo.FACULTY f inner join dbo.PULPIT p
 				on f.FACULTY = p.FACULTY
 				group by f.FACULTY_NAME;
 
 go 
-Select * from [Количество кафедр]
+Select * from [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]
 
 go 
-DROP VIEW [Количество кафедр]
+DROP VIEW [РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°С„РµРґСЂ]

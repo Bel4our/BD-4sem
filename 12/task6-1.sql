@@ -1,11 +1,11 @@
-
+Ôªø
 set transaction isolation level SERIALIZABLE	
 	begin transaction 
-	select SUBJECT_NAME from SUBJECT where PULPIT = 'Œ’';
+	select SUBJECT_NAME from SUBJECT where PULPIT = '–û–•';
 	--t1
 	--t2
 
 	select  case
-    when SUBJECT = '“œ¬»' then 'insert  SUBJECT'  else ' ' 
-	end 'ÂÁÛÎ¸Ú‡Ú', SUBJECT_NAME from SUBJECT  where PULPIT = 'Œ’';
+    when SUBJECT = '–¢–ü–í–ò' then 'insert  SUBJECT'  else ' ' 
+	end '—Ä–µ–∑—É–ª—å—Ç–∞—Ç', SUBJECT_NAME from SUBJECT  where PULPIT = '–û–•';
 	commit; 

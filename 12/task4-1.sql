@@ -1,10 +1,10 @@
-
+Ôªø
 set transaction isolation level READ UNCOMMITTED
 begin transaction
 --t1
-select @@SPID, 'insert PULPIT' '‚˚‚Ó‰', * from PULPIT
-											where PULPIT.PULPIT='œ»';
-select @@SPID, 'update SUBJECT' '‚˚‚Ó‰', SUBJECT.SUBJECT, SUBJECT_NAME 
-									from SUBJECT where SUBJECT.PULPIT='œ»';
+select @@SPID, 'insert PULPIT' '–≤—ã–≤–æ–¥', * from PULPIT
+											where PULPIT.PULPIT='–ü–ò';
+select @@SPID, 'update SUBJECT' '–≤—ã–≤–æ–¥', SUBJECT.SUBJECT, SUBJECT_NAME 
+									from SUBJECT where SUBJECT.PULPIT='–ü–ò';
 commit;
 --t2

@@ -1,4 +1,4 @@
-use UNIVER
+ï»¿use UNIVER
 
 --1
 exec sp_helpindex 'AUDITORIUM_TYPE'
@@ -158,7 +158,7 @@ use tempdb;
 create table #ex5
 (
 TKEY int,
-ÑÑ int identity(1,1),
+Ð¡Ð¡ int identity(1,1),
 TFIELD varchar(100)
 );
 
@@ -167,13 +167,13 @@ declare @iteration_one int = 0;
 while @iteration_one < 20000
 begin
 insert #ex5(TKEY, TFIELD)
-values (FLOOR(30000*rand()), REPLICATE('ñòðîêà', 10));
+values (FLOOR(30000*rand()), REPLICATE('ÑÑ‚Ñ€Ð¾ÐºÐ°', 10));
 set @iteration_one = @iteration_one + 1;
 end;
 
 create index #ex5_index on #ex5(TKEY);
 
-SELECT NAME [Èíäåêñ], AVG_FRAGMENTATION_IN_PERCENT [Ôðàãìåíòàöèÿ (%)]
+SELECT NAME [Ð˜Ð½Ð´ÐµÐºÑ], AVG_FRAGMENTATION_IN_PERCENT [Ð¤Ñ€Ð°Ð³Ð¼ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ (%)]
 FROM SYS.DM_DB_INDEX_PHYSICAL_STATS(DB_ID(N'TEMPDB'),
 OBJECT_ID(N'#ex5'), NULL, NULL, NULL) SS
 JOIN SYS.INDEXES II ON SS.OBJECT_ID = II.OBJECT_ID
@@ -182,7 +182,7 @@ AND SS.INDEX_ID = II.INDEX_ID WHERE NAME IS NOT NULL;
 
 insert top(100000) #ex5(TKEY, TFIELD) select TKEY, TFIELD from #ex5;
 
-SELECT NAME [Èíäåêñ], AVG_FRAGMENTATION_IN_PERCENT [Ôðàãìåíòàöèÿ (%)]
+SELECT NAME [Ð˜Ð½Ð´ÐµÐºÑ], AVG_FRAGMENTATION_IN_PERCENT [Ð¤Ñ€Ð°Ð³Ð¼ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ (%)]
 FROM SYS.DM_DB_INDEX_PHYSICAL_STATS(DB_ID(N'TEMPDB'),
 OBJECT_ID(N'#ex5'), NULL, NULL, NULL) SS
 JOIN SYS.INDEXES II ON SS.OBJECT_ID = II.OBJECT_ID
@@ -199,7 +199,7 @@ create index #ex6_index on #ex5(TKEY) with (fillfactor = 65);
 insert top(50) percent into #ex5(TKEY, TFIELD)
 select TKEY, TFIELD from #ex5;
 
-SELECT NAME [Èíäåêñ], AVG_FRAGMENTATION_IN_PERCENT [Ôðàãìåíòàöèÿ (%)]
+SELECT NAME [Ð˜Ð½Ð´ÐµÐºÑ], AVG_FRAGMENTATION_IN_PERCENT [Ð¤Ñ€Ð°Ð³Ð¼ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ (%)]
 FROM SYS.DM_DB_INDEX_PHYSICAL_STATS(DB_ID(N'TEMPDB'),
 OBJECT_ID(N'#ex5'), NULL, NULL, NULL) SS
 JOIN SYS.INDEXES II ON SS.OBJECT_ID = II.OBJECT_ID

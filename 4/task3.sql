@@ -1,12 +1,12 @@
-SELECT DISTINCT  FACULTY.FACULTY[Факультет], PULPIT.PULPIT[Кафедра], SUBJECT.SUBJECT[Дисциплина],
-	PROGRESS.NOTE[Оценка], STUDENT.NAME[Имя студента],
+п»їSELECT DISTINCT  FACULTY.FACULTY[Р¤Р°РєСѓР»СЊС‚РµС‚], PULPIT.PULPIT[РљР°С„РµРґСЂР°], SUBJECT.SUBJECT[Р”РёСЃС†РёРїР»РёРЅР°],
+	PROGRESS.NOTE[РћС†РµРЅРєР°], STUDENT.NAME[РРјСЏ СЃС‚СѓРґРµРЅС‚Р°],
 		 
 CASE
-when (PROGRESS.NOTE = 6) then 'шесть'
-when (PROGRESS.NOTE = 7) then 'семь'
-when (PROGRESS.NOTE = 8) then 'восемь'
-else 'оценка другая'
-end [Оценка]
+when (PROGRESS.NOTE = 6) then 'С€РµСЃС‚СЊ'
+when (PROGRESS.NOTE = 7) then 'СЃРµРјСЊ'
+when (PROGRESS.NOTE = 8) then 'РІРѕСЃРµРјСЊ'
+else 'РѕС†РµРЅРєР° РґСЂСѓРіР°СЏ'
+end [РћС†РµРЅРєР°]
 
 from PROGRESS
 inner join STUDENT on PROGRESS.IDSTUDENT = STUDENT.IDSTUDENT

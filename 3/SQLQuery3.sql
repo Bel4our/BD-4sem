@@ -1,6 +1,6 @@
-use Ce_MyBASE;
+п»їuse Ce_MyBASE;
 
-ALTER table ТОВАРЫ ADD Дата_поступления date;
+ALTER table РўРћР’РђР Р« ADD Р”Р°С‚Р°_РїРѕСЃС‚СѓРїР»РµРЅРёСЏ date;
 Go
-ALTER table ТОВАРЫ ADD CONSTRAINT c_Дата_поступления CHECK(Дата_поступления < '2025-02-03');
+ALTER table РўРћР’РђР Р« ADD CONSTRAINT c_Р”Р°С‚Р°_РїРѕСЃС‚СѓРїР»РµРЅРёСЏ CHECK(Р”Р°С‚Р°_РїРѕСЃС‚СѓРїР»РµРЅРёСЏ < '2025-02-03');
 Go

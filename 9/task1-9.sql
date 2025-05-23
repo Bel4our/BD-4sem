@@ -1,4 +1,4 @@
-use UNIVER;
+п»їuse UNIVER;
 
 DECLARE @c char = 'c',
 		@v varchar(5) = 'hello',
@@ -25,8 +25,8 @@ DECLARE	@percent float = cast(cast(@lessavg as float) / cast(@q as float) * 100 
 
 if @capacity > 200
 begin
-	SELECT @q 'Количество аудиторий', @avg 'Среднее количество мест',
-	@lessavg 'Количество аудиторий вместимость которых меньше среднего', cast(@percent as varchar) + '%' 'Процент этих аудиторий'
+	SELECT @q 'РљРѕР»РёС‡РµСЃС‚РІРѕ Р°СѓРґРёС‚РѕСЂРёР№', @avg 'РЎСЂРµРґРЅРµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РјРµСЃС‚',
+	@lessavg 'РљРѕР»РёС‡РµСЃС‚РІРѕ Р°СѓРґРёС‚РѕСЂРёР№ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ РєРѕС‚РѕСЂС‹С… РјРµРЅСЊС€Рµ СЃСЂРµРґРЅРµРіРѕ', cast(@percent as varchar) + '%' 'РџСЂРѕС†РµРЅС‚ СЌС‚РёС… Р°СѓРґРёС‚РѕСЂРёР№'
 end
 else if @capacity < 200
 print @capacity
@@ -35,14 +35,14 @@ print @capacity
 
 
 
-print 'Число обработанных строк ' + cast(@@ROWCOUNT as varchar(10));
-print 'Версия SQL Server ' + cast(@@VERSION as varchar(300));
-print 'Системный идентификатор процесса, назначенный сервером текущему подключению ' + cast(@@SPID as varchar(10));
-print 'Код последней ошибки ' + cast(@@ERROR as varchar(10));
-print 'Имя сервера ' + cast(@@SERVERNAME as varchar(100));
-print 'Уровень вложенности транзакции ' + cast(@@TRANCOUNT as varchar(10));
-print 'Проверка результата считывания строк результирующего набора ' + cast(@@FETCH_STATUS as varchar(10));
-print 'Уровень вложенности текущей процедуры ' + cast(@@NESTLEVEL as varchar(10));
+print 'Р§РёСЃР»Рѕ РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹С… СЃС‚СЂРѕРє ' + cast(@@ROWCOUNT as varchar(10));
+print 'Р’РµСЂСЃРёСЏ SQL Server ' + cast(@@VERSION as varchar(300));
+print 'РЎРёСЃС‚РµРјРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїСЂРѕС†РµСЃСЃР°, РЅР°Р·РЅР°С‡РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂРѕРј С‚РµРєСѓС‰РµРјСѓ РїРѕРґРєР»СЋС‡РµРЅРёСЋ ' + cast(@@SPID as varchar(10));
+print 'РљРѕРґ РїРѕСЃР»РµРґРЅРµР№ РѕС€РёР±РєРё ' + cast(@@ERROR as varchar(10));
+print 'РРјСЏ СЃРµСЂРІРµСЂР° ' + cast(@@SERVERNAME as varchar(100));
+print 'РЈСЂРѕРІРµРЅСЊ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё С‚СЂР°РЅР·Р°РєС†РёРё ' + cast(@@TRANCOUNT as varchar(10));
+print 'РџСЂРѕРІРµСЂРєР° СЂРµР·СѓР»СЊС‚Р°С‚Р° СЃС‡РёС‚С‹РІР°РЅРёСЏ СЃС‚СЂРѕРє СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµРіРѕ РЅР°Р±РѕСЂР° ' + cast(@@FETCH_STATUS as varchar(10));
+print 'РЈСЂРѕРІРµРЅСЊ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё С‚РµРєСѓС‰РµР№ РїСЂРѕС†РµРґСѓСЂС‹ ' + cast(@@NESTLEVEL as varchar(10));
 
 
 
@@ -56,7 +56,7 @@ ELSE SET @z= 1 - EXP(@x-2);
 print 'z = '+ cast(@z as varchar(10));
 
 
-declare @FIO varchar(60) = 'Семёнов Даниил Вячеславович';
+declare @FIO varchar(60) = 'РЎРµРјС‘РЅРѕРІ Р”Р°РЅРёРёР» Р’СЏС‡РµСЃР»Р°РІРѕРІРёС‡';
 set @FIO = (select substring(@FIO, 1, charindex(' ', @FIO)) +
 substring(@FIO, charindex(' ', @FIO) + 1, 1) + '.' +
 substring(@FIO, charindex(' ', @FIO, charindex(' ', @FIO) + 1)+ 1, 1) + '.');
@@ -68,15 +68,15 @@ DECLARE @next_month int = MONTH(GETDATE()) + 1;
 select * from STUDENT where MONTH(STUDENT.BDAY) = @next_month;
 
 select distinct CASE
-	when DATEPART(weekday, PDATE) = 1 then 'Понедельник'
-	when DATEPART(weekday, PDATE) = 2 then 'Вторник'
-	when DATEPART(weekday, PDATE) = 3 then 'Среда'
-	when DATEPART(weekday, PDATE) = 4 then 'Четверг'
-	when DATEPART(weekday, PDATE) = 5 then 'Пятница'
-	when DATEPART(weekday, PDATE) = 6 then 'Суббота'
-	when DATEPART(weekday, PDATE) = 7 then 'Воскресенье'
+	when DATEPART(weekday, PDATE) = 1 then 'РџРѕРЅРµРґРµР»СЊРЅРёРє'
+	when DATEPART(weekday, PDATE) = 2 then 'Р’С‚РѕСЂРЅРёРє'
+	when DATEPART(weekday, PDATE) = 3 then 'РЎСЂРµРґР°'
+	when DATEPART(weekday, PDATE) = 4 then 'Р§РµС‚РІРµСЂРі'
+	when DATEPART(weekday, PDATE) = 5 then 'РџСЏС‚РЅРёС†Р°'
+	when DATEPART(weekday, PDATE) = 6 then 'РЎСѓР±Р±РѕС‚Р°'
+	when DATEPART(weekday, PDATE) = 7 then 'Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ'
 end
-from PROGRESS where SUBJECT = 'СУБД'
+from PROGRESS where SUBJECT = 'РЎРЈР‘Р”'
 
 
 
@@ -85,11 +85,11 @@ DECLARE @avgMark float = (select avg(Note) from PROGRESS);
 
 print @avgMark;
 if @avgMark < 8
-print 'отличников мало';
+print 'РѕС‚Р»РёС‡РЅРёРєРѕРІ РјР°Р»Рѕ';
 else if @avgMark > 9
-print 'отличников много';
+print 'РѕС‚Р»РёС‡РЅРёРєРѕРІ РјРЅРѕРіРѕ';
 else 
-print 'отличников в самый раз';
+print 'РѕС‚Р»РёС‡РЅРёРєРѕРІ РІ СЃР°РјС‹Р№ СЂР°Р·';
 
 
 
@@ -99,11 +99,11 @@ print 'отличников в самый раз';
 
 select PROGRESS.IDSTUDENT, PROGRESS.SUBJECT, 
 case
-	when AVG(PROGRESS.NOTE) between 4 and 6 then '1.0 коэфф'
-	when AVG(PROGRESS.NOTE) between 6 and 8 then '1.2 коэфф'
-	when AVG(PROGRESS.NOTE) between 8 and 9 then '1.4 коэфф'
-	when AVG(PROGRESS.NOTE) between 9 and 10 then '1.6 коэфф'
-	else 'Кандидат на отчисление'
+	when AVG(PROGRESS.NOTE) between 4 and 6 then '1.0 РєРѕСЌС„С„'
+	when AVG(PROGRESS.NOTE) between 6 and 8 then '1.2 РєРѕСЌС„С„'
+	when AVG(PROGRESS.NOTE) between 8 and 9 then '1.4 РєРѕСЌС„С„'
+	when AVG(PROGRESS.NOTE) between 9 and 10 then '1.6 РєРѕСЌС„С„'
+	else 'РљР°РЅРґРёРґР°С‚ РЅР° РѕС‚С‡РёСЃР»РµРЅРёРµ'
 end
 
 from PROGRESS

@@ -1,13 +1,13 @@
-
+п»ї
 
 begin transaction 	  
-	delete SUBJECT where SUBJECT = 'ТПВИ';
-	INSERT into SUBJECT values('ТПВИ', 'Технологии программирования в интернет','ИСиТ');
-       update SUBJECT set SUBJECT_NAME = 'Технологии программирования' where  SUBJECT = 'ТПВИ';
-    select SUBJECT_NAME from SUBJECT where PULPIT = 'ИСиТ';
+	delete SUBJECT where SUBJECT = 'РўРџР’Р';
+	INSERT into SUBJECT values('РўРџР’Р', 'РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ РІ РёРЅС‚РµСЂРЅРµС‚','РРЎРёРў');
+       update SUBJECT set SUBJECT_NAME = 'РўРµС…РЅРѕР»РѕРіРёРё РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ' where  SUBJECT = 'РўРџР’Р';
+    select SUBJECT_NAME from SUBJECT where PULPIT = 'РРЎРёРў';
 	--t1
     commit; 
-    select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'ИСиТ';
+    select SUBJECT_NAME,PULPIT from SUBJECT where PULPIT = 'РРЎРёРў';
 	--t2
  		
-delete SUBJECT where SUBJECT = 'ТПВИ';
+delete SUBJECT where SUBJECT = 'РўРџР’Р';

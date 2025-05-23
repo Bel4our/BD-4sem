@@ -1,2 +1,2 @@
-Create database Ce_MyBASE;
+﻿Create database Ce_MyBASE;
 GO

@@ -1,7 +1,7 @@
-begin transaction
+п»їbegin transaction
 select @@SPID 
-insert PULPIT values ('ПИ', 'Программная инженерия', 'ИТ');
-update SUBJECT set SUBJECT.PULPIT = 'ПИ' where SUBJECT.SUBJECT='БД'
+insert PULPIT values ('РџР', 'РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ', 'РРў');
+update SUBJECT set SUBJECT.PULPIT = 'РџР' where SUBJECT.SUBJECT='Р‘Р”'
 
 --t1
 --t2

@@ -1,11 +1,11 @@
-use UNIVER;
+Ôªøuse UNIVER;
 
 SELECT distinct PULPIT.PULPIT_NAME
 FROM FACULTY, PULPIT, PROFESSION
 WHERE PULPIT.FACULTY=FACULTY.FACULTY
 AND FACULTY.FACULTY In (Select PROFESSION.FACULTY FROM PROFESSION 
-					WHERE PROFESSION_NAME Like '%ÚÂıÌÓÎÓ„ËË%'
-					or PROFESSION_NAME Like '%ÚÂıÌÓÎÓ„Ëˇ%')
+					WHERE PROFESSION_NAME Like '%—Ç–µ—Ö–Ω–æ–ª–æ–≥–∏–∏%'
+					or PROFESSION_NAME Like '%—Ç–µ—Ö–Ω–æ–ª–æ–≥–∏—è%')
 
 
 
@@ -13,16 +13,16 @@ SELECT distinct PULPIT.PULPIT_NAME
 FROM FACULTY inner join PULPIT 
 on FACULTY.FACULTY=PULPIT.FACULTY
 WHERE FACULTY.FACULTY In (Select PROFESSION.FACULTY FROM PROFESSION 
-					WHERE PROFESSION_NAME Like '%ÚÂıÌÓÎÓ„ËË%'
-					or PROFESSION_NAME Like '%ÚÂıÌÓÎÓ„Ëˇ%')
+					WHERE PROFESSION_NAME Like '%—Ç–µ—Ö–Ω–æ–ª–æ–≥–∏–∏%'
+					or PROFESSION_NAME Like '%—Ç–µ—Ö–Ω–æ–ª–æ–≥–∏—è%')
 
 SELECT distinct PULPIT.PULPIT_NAME
 FROM FACULTY inner join PULPIT 
 on FACULTY.FACULTY=PULPIT.FACULTY
 inner join PROFESSION
 			ON PROFESSION.FACULTY = FACULTY.FACULTY
-			WHERE PROFESSION_NAME Like '%ÚÂıÌÓÎÓ„ËË%'
-					or PROFESSION_NAME Like '%ÚÂıÌÓÎÓ„Ëˇ%'
+			WHERE PROFESSION_NAME Like '%—Ç–µ—Ö–Ω–æ–ª–æ–≥–∏–∏%'
+					or PROFESSION_NAME Like '%—Ç–µ—Ö–Ω–æ–ª–æ–≥–∏—è%'
 
 
 SELECT AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITORIUM_CAPACITY
@@ -41,20 +41,20 @@ WHERE not exists (select* from PULPIT
 
 SELECT top 1
 	(select avg(NOTE) from PROGRESS
-			where PROGRESS.SUBJECT like 'Œ¿Ëœ') [Œ¿Ëœ],
+			where PROGRESS.SUBJECT like '–û–ê–∏–ü') [–û–ê–∏–ü],
 	(select avg(NOTE) from PROGRESS
-			where PROGRESS.SUBJECT like '¡ƒ') [ √],
+			where PROGRESS.SUBJECT like '–ë–î') [–ö–ì],
 	(select avg(NOTE) from PROGRESS
-			where PROGRESS.SUBJECT like '—”¡ƒ') [—”¡ƒ]
+			where PROGRESS.SUBJECT like '–°–£–ë–î') [–°–£–ë–î]
 FROM PROGRESS
 
 
 SELECT NOTE, SUBJECT 
 FROM PROGRESS	
-	where NOTE>= all(select NOTE from PROGRESS WHERE SUBJECT like 'Œ¿Ëœ')
+	where NOTE>= all(select NOTE from PROGRESS WHERE SUBJECT like '–û–ê–∏–ü')
 
 
 SELECT NOTE, SUBJECT 
 FROM PROGRESS	
-	where NOTE>= any(select NOTE from PROGRESS WHERE SUBJECT like 'Œ¿Ëœ')
+	where NOTE>= any(select NOTE from PROGRESS WHERE SUBJECT like '–û–ê–∏–ü')
 

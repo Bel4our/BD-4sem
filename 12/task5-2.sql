@@ -1,13 +1,13 @@
-
+Ôªø
 begin transaction
 --t1
-update SUBJECT set PULPIT = '»—Ë“'
-					where PULPIT = 'À”'
+update SUBJECT set PULPIT = '–ò–°–∏–¢'
+					where PULPIT = '–õ–£'
 
 commit;
 
 --t2
 
-update SUBJECT set PULPIT = 'À”'
-					where SUBJECT.SUBJECT = '»√'
+update SUBJECT set PULPIT = '–õ–£'
+					where SUBJECT.SUBJECT = '–ò–ì'
 					
